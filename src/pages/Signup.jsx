@@ -10,8 +10,9 @@ export const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // https://notes-app-backend-gdcr.onrender.com
         try {
-            const response = await axios.post("http://localhost:5000/api/auth/signup", { email, name, password });
+            const response = await axios.post("https://notes-app-backend-gdcr.onrender.com/api/auth/signup", { email, name, password });
             console.log(response);
             if (response.data.success) {
                 navigate('/login');
