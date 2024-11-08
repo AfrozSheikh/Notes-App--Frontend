@@ -13,19 +13,35 @@ export const ContextProvider = ({children}) => {
       SetUser(null)
 
     }
-    useEffect(()=>{
-      const verifyUser = async()=>{
-        try {
-          const res = await axios.get("http://localhost:5000/api/auth/verify",{headers :{ Authorization:`Bearer ${localStorage.getItem("token")}`}})
-          if(res.data.success){
-            SetUser(res.data.user)
-          }
-        } catch (error) {
-          SetUser(null)
-        }
+    useEffect(() => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        verifyUser(); // Verify token on page load if it exists
       }
-      verifyUser()
-    },[])
+    }, []);
+    
+    const verifyUser = async () => {
+      const token = localStorage.getItem("token");
+    
+      if (!token) {
+        SetUser(null); // No token, no user
+        return;
+      }
+    
+      try {
+        const res = await axios.get("http://localhost:5000/api/auth/verify", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (res.data.success) {
+          SetUser(res.data.user);
+        }
+      } catch (error) {
+        console.error("Verification failed:", error.response ? error.response.data : error.message);
+        SetUser(null); // Reset user if verification fails
+      }
+    };
+    
+    
   return (
    <authContext.Provider value={{user , login,handleLogout}}>   
    {children}
