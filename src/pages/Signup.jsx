@@ -29,6 +29,7 @@ export const Signup = () => {
                     <div className="flex flex-col">
                         <label htmlFor="name" className="mb-2 text-gray-700 font-medium">Name</label>
                         <input
+                            required
                             type="text"
                             name="name"
                             onChange={(e) => setName(e.target.value)}
@@ -38,6 +39,7 @@ export const Signup = () => {
                     <div className="flex flex-col">
                         <label htmlFor="email" className="mb-2 text-gray-700 font-medium">Email</label>
                         <input
+                            required
                             type="email"
                             name="email"
                             onChange={(e) => setEmail(e.target.value)}
@@ -49,6 +51,7 @@ export const Signup = () => {
                         <input
                             type="password"
                             name="password"
+                            required
                             onChange={(e) => setPassword(e.target.value)}
                             className="p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />

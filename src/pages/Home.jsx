@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Navbar } from '../components/Navbar';
 import { Modal } from '../components/Modal';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+
 import { NoteCard } from '../components/NoteCard';
 import { useAuth } from '../context/ContextProvider';
 
@@ -14,7 +14,7 @@ export const Home = () => {
   const [filteredNotes, setFilteredNotes] = useState([]);
   const [currentNote, setCurrentNote] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
-  const navigate = useNavigate();
+ 
 
   const onEdit = (note) => {
     setCurrentNote(note);
